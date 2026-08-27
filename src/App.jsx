@@ -1,6 +1,3 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { NAV_ITEMS } from './i18n/translations.js'
 import Loader from './components/Loader.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
@@ -17,23 +14,6 @@ import useReveal from './hooks/useReveal.js'
 
 export default function App() {
   useReveal()
-  const location = useLocation()
-
-  // Keep the URL in sync with the visible section: navigating to a route
-  // like /Accueil or /Contact smooth-scrolls to the matching section
-  // instead of loading a separate page.
-  useEffect(() => {
-    const match = NAV_ITEMS.find(
-      (item) => item.path.toLowerCase() === location.pathname.toLowerCase()
-    )
-    const targetId = match ? match.id : location.pathname === '/' ? null : null
-
-    if (targetId) {
-      requestAnimationFrame(() => {
-        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      })
-    }
-  }, [location.pathname])
 
   return (
     <>

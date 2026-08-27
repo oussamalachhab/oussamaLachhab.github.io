@@ -1,30 +1,23 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { NAV_ITEMS, translations } from '../i18n/translations.js'
-import { useLanguage } from '../contexts/LanguageContext.jsx'
+
+const LINKS = [
+  { href: 'Accueil', label: 'Accueil', num: '01' },
+  { href: 'À-propos', label: 'À propos', num: '02' },
+  { href: 'Compétences', label: 'Compétences', num: '03' },
+  { href: 'Projets', label: 'Projets', num: '04' },
+  { href: 'Parcours', label: 'Parcours', num: '05' },
+  { href: 'Contact', label: 'Contact', num: '06' },
+]
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const { language, toggleLanguage } = useLanguage()
-  const t = translations.header
 
   return (
     <>
       <header>
-        <Link to="/Accueil" className="logo" onClick={() => setOpen(false)}>
+        <div className="logo">
           Oussama <span className="accent">Lachhab</span> <span className="dot" />
-        </Link>
-
-        <button
-          type="button"
-          className="lang-switch"
-          onClick={toggleLanguage}
-          aria-label="Toggle language"
-        >
-          <span className={language === 'fr' ? 'active' : ''}>FR</span>
-          <span className="lang-sep">/</span>
-          <span className={language === 'en' ? 'active' : ''}>EN</span>
-        </button>
+        </div>
       </header>
 
       <button
@@ -32,30 +25,30 @@ export default function Header() {
         onClick={() => setOpen((v) => !v)}
       >
         {open ? (
-          <><span>{t.close[language]}</span> <span className="close-x">✕</span></>
+          <><span>Close</span> <span className="close-x">✕</span></>
         ) : (
-          <><span>{t.menu[language]}</span> <span className="plus">+</span></>
+          <><span>Menu</span> <span className="plus">+</span></>
         )}
       </button>
 
       <div className={`nav-overlay${open ? ' open' : ''}`}>
         <div className="nav-overlay-inner">
           <nav className="nav-links">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
+            {LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
                 className="nav-link"
                 onClick={() => setOpen(false)}
               >
-                {item[language]}
-                <sup className="nav-num">{item.num}</sup>
-              </Link>
+                {link.label}
+                <sup className="nav-num">{link.num}</sup>
+              </a>
             ))}
           </nav>
 
           <div className="nav-social">
-            <div className="nav-social-label mono">{t.socialsLabel[language]}</div>
+            <div className="nav-social-label mono">Socials</div>
             <div className="nav-social-links">
               <a href="https://github.com/oussamalachhab" onClick={() => setOpen(false)}>GitHub</a>
               <span className="sep">·</span>
