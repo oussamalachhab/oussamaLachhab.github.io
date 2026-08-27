@@ -1,4 +1,11 @@
+import { Link } from 'react-router-dom'
+import { translations } from '../i18n/translations.js'
+import { useLanguage } from '../contexts/LanguageContext.jsx'
+
 export default function Footer() {
+  const { language } = useLanguage()
+  const t = translations.footer
+
   return (
     <footer>
       <div className="wrap">
@@ -7,7 +14,7 @@ export default function Footer() {
             <div className="foot-logo">
               Oussama <span className="accent">Lachhab</span> •
             </div>
-            <div className="foot-role">Développeur Full Stack</div>
+            <div className="foot-role">{t.role[language]}</div>
           </div>
           <div className="foot-social">
             <a href="https://github.com/oussamalachhab" title="GitHub">⌥</a>
@@ -16,8 +23,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          <span>© 2026 Oussama Lachhab. Tous droits réservés.</span>
-          <a href="#home" className="back-top">Retour en haut ↑</a>
+          <span>{t.rights[language]}</span>
+          <Link to="/Accueil" className="back-top">{t.backTop[language]}</Link>
         </div>
       </div>
     </footer>

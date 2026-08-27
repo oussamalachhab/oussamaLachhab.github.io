@@ -1,4 +1,6 @@
 import profile from '../assets/profile.png'
+import { translations } from '../i18n/translations.js'
+import { useLanguage } from '../contexts/LanguageContext.jsx'
 
 const STACK = [
   'React.js', 'Laravel', 'Node.js', '.NET', 'MySQL', 'MongoDB',
@@ -19,11 +21,14 @@ function TickerRow() {
 }
 
 export default function Hero() {
+  const { language } = useLanguage()
+  const t = translations.hero
+
   return (
     <section className="hero" id="home">
       <div className="grid-bg" />
       <div className="badge" style={{ marginBottom: 26 }}>
-        <span className="dot" /> Disponible pour un PFE 2027
+        <span className="dot" /> {t.available[language]}
       </div>
 
       <div className="hero-photo-wrap">
@@ -33,17 +38,12 @@ export default function Hero() {
       </div>
 
       <h1>Oussama Lachhab</h1>
-      <div className="role">Développeur Full Stack</div>
-      <p className="desc">
-        Je conçois des applications web complètes — interfaces React soignées, API
-        REST robustes, authentification sécurisée et bases de données bien pensées.
-        Actuellement en dernière année d&apos;ingénierie, à la recherche d&apos;un
-        stage de fin d&apos;études pour 2027.
-      </p>
+      <div className="role">{t.role[language]}</div>
+      <p className="desc">{t.desc[language]}</p>
 
       <div className="btn-row">
-        <a href="#projects" className="btn btn-solid">Voir mes projets →</a>
-        <a href="#contact" className="btn btn-outline">Me contacter</a>
+        <a href="#projects" className="btn btn-solid">{t.ctaProjects[language]}</a>
+        <a href="#contact" className="btn btn-outline">{t.ctaContact[language]}</a>
       </div>
 
       <div className="ticker-wrap">
