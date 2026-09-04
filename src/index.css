@@ -90,6 +90,18 @@
   .menu-btn .plus{font-size:18px; color:var(--accent);}
   .menu-btn .close-x{font-size:16px; color:var(--accent);}
 
+  .lang-switch{
+    position:fixed; top:26px; right:118px; z-index:1200;
+    display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.04);
+    border:1px solid var(--card-border); border-radius:999px; padding:6px 12px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.05em;
+    color:var(--text-dim); cursor:pointer; transition:border-color .25s ease;
+  }
+  .lang-switch:hover{border-color:var(--card-border-hover);}
+  .lang-switch .lang-sep{color:var(--text-dimmer);}
+  .lang-switch .active{color:var(--accent); font-weight:700;}
+  @media(max-width:600px){.lang-switch{right:96px; padding:5px 10px;}}
+
   .nav-overlay{
     position:fixed; inset:0; background:#050505; z-index:1000;
     opacity:0; visibility:hidden; transform:translateY(-8px);

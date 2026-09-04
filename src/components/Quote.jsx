@@ -1,10 +1,16 @@
+import { translations } from '../i18n/translations.js'
+import { useLanguage } from '../contexts/LanguageContext.jsx'
+
 export default function Quote() {
+  const { language } = useLanguage()
+  const t = translations.quote
+
   return (
     <section className="quote-section wrap reveal">
-      <span className="eyebrow">⚡ Full stack, de bout en bout</span>
+      <span className="eyebrow">{t.eyebrow[language]}</span>
       <h2>
-        "Je transforme des idées en{' '}
-        <span className="accent">produits web fiables</span>."
+        "{t.lineBefore[language]}
+        <span className="accent">{t.accent[language]}</span>{t.lineAfter[language]}"
       </h2>
     </section>
   )

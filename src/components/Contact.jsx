@@ -1,6 +1,11 @@
 import { useState } from 'react'
+import { translations } from '../i18n/translations.js'
+import { useLanguage } from '../contexts/LanguageContext.jsx'
 
 export default function Contact() {
+  const { language } = useLanguage()
+  const t = translations.contact
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -30,7 +35,7 @@ export default function Contact() {
 
       name: form.name,
       email: form.email,
-      subject: form.subject || 'Opportunité de stage / Projet',
+      subject: form.subject || t.formSubjectPh[language],
       message: form.message,
 
       // Anti-spam
@@ -85,31 +90,24 @@ export default function Contact() {
     <section className="contact wrap" id="contact">
       <div className="section-head reveal">
         <div className="badge">
-          <span className="dot" /> Restons en contact
+          <span className="dot" /> {t.badge[language]}
         </div>
 
-        <h2>Construisons quelque chose ensemble</h2>
+        <h2>{t.title[language]}</h2>
 
-        <p>
-          Une opportunité de stage, un projet ou juste une question technique ?
-          Écris-moi.
-        </p>
+        <p>{t.subtitle[language]}</p>
       </div>
 
       <div className="contact-grid reveal">
         <div className="contact-info">
-          <p className="intro">
-            Je suis toujours partant pour discuter de stages, de projets full
-            stack, d&apos;architecture logicielle ou de collaborations
-            techniques.
-          </p>
+          <p className="intro">{t.intro[language]}</p>
 
           <div className="info-row">
             <div className="left">
               <div className="ic">✉</div>
 
               <div>
-                <div className="lbl">Email</div>
+                <div className="lbl">{t.email[language]}</div>
                 <div className="val">
                   lachhab.oussama264@gmail.com
                 </div>
@@ -135,7 +133,7 @@ export default function Contact() {
               <div className="ic">☎</div>
 
               <div>
-                <div className="lbl">Téléphone / WhatsApp</div>
+                <div className="lbl">{t.phone[language]}</div>
                 <div className="val">+212 6 84 00 12 92</div>
               </div>
             </div>
@@ -164,12 +162,12 @@ export default function Contact() {
 
         <form onSubmit={handleSubmit}>
           <div className="field">
-            <label>Votre nom</label>
+            <label>{t.formName[language]}</label>
 
             <input
               type="text"
               name="name"
-              placeholder="ex. Sara El Amrani"
+              placeholder={t.formNamePh[language]}
               value={form.name}
               onChange={handleChange}
               required
@@ -177,12 +175,12 @@ export default function Contact() {
           </div>
 
           <div className="field">
-            <label>Votre email</label>
+            <label>{t.formEmail[language]}</label>
 
             <input
               type="email"
               name="email"
-              placeholder="sara@entreprise.com"
+              placeholder={t.formEmailPh[language]}
               value={form.email}
               onChange={handleChange}
               required
@@ -190,24 +188,24 @@ export default function Contact() {
           </div>
 
           <div className="field">
-            <label>Sujet</label>
+            <label>{t.formSubject[language]}</label>
 
             <input
               type="text"
               name="subject"
-              placeholder="Opportunité de stage / Projet"
+              placeholder={t.formSubjectPh[language]}
               value={form.subject}
               onChange={handleChange}
             />
           </div>
 
           <div className="field">
-            <label>Message</label>
+            <label>{t.formMessage[language]}</label>
 
             <textarea
               rows={5}
               name="message"
-              placeholder="Parlez-moi de votre projet, du contexte, des délais..."
+              placeholder={t.formMessagePh[language]}
               value={form.message}
               onChange={handleChange}
               required
@@ -219,21 +217,15 @@ export default function Contact() {
             className="submit-btn"
             disabled={loading}
           >
-            {loading
-              ? 'Envoi en cours...'
-              : 'Envoyer le message →'}
+            {loading ? t.submitting[language] : t.submit[language]}
           </button>
 
           {status === 'success' && (
-            <p className="form-success">
-              ✓ Message envoyé avec succès !
-            </p>
+            <p className="form-success">{t.success[language]}</p>
           )}
 
           {status === 'error' && (
-            <p className="form-error">
-              ✕ Une erreur est survenue. Réessayez.
-            </p>
+            <p className="form-error">{t.error[language]}</p>
           )}
         </form>
       </div>
